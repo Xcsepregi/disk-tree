@@ -9,8 +9,12 @@
 #endif
 
 using namespace tree;
+typedef std::unique_ptr<Node> NodePtr;
+typedef std::unique_ptr<File> FilePtr;
+typedef std::unique_ptr<Link> LinkPtr;
+typedef std::unique_ptr<Folder> FolderPtr;
 
-Node * Node::Parse(rapidjson::Value & json)
+NodePtr Node::Parse(rapidjson::Value & json)
 {
 	if (json.HasMember("size"))
 	{

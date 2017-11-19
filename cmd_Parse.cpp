@@ -49,8 +49,8 @@ std::variant<std::string, tree::Node *> cmd::ParsePath(const std::string & path,
 			//todo: nice error message
 			return "invalid root";
 		}
-
-		root = folder->Find(path);
+		
+		root = folder->Find(path).get();
 		if (!root)
 		{
 			//todo: make nice error message

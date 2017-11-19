@@ -14,15 +14,15 @@ namespace tree
 		tree::Size Size(bool bFollow, bool bRecursive) const override;
 		void List(bool bFollow, bool bRecursive, const std::string & offset, std::ostream & out) const override;
 
-		void Set(Node * link) { _link = link; }
-		Node * Get() const { return _link; }
+		void Set(NodePtr link) { _link = std::move(link); }
+		const NodePtr Get() { return std::move(_link); }
 
 		const std::string & Path() const { return _path; }
-
-		static Link * Parse(rapidjson::Value & json);
+		typedef std::unique_ptr<Link> LinkPtr;
+		static LinkPtr Parse(rapidjson::Value & json);
 
 	private:
-		Node * _link { nullptr };
+		NodePtr _link { nullptr };
 		const std::string _path;
 	};
 }

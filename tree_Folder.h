@@ -4,9 +4,10 @@
 
 #include <vector>
 #include <regex>
+//typedef std::unique_ptr<tree::Node> NodePtr;
 
 namespace tree
-{
+{	
 	class Folder : public Node
 	{
 	public:
@@ -16,16 +17,17 @@ namespace tree
 		tree::Size Size(bool bFollow, bool bRecursive) const override;
 		void List(bool bFollow, bool bRecursive, const std::string & offset, std::ostream & out) const override;
 
-		void Insert(Node * node);
-		void Remove(const Node * node);
-		const std::vector<Node*> & Content() const { return _content; }
+		void Insert(NodePtr node);
+		void Remove(const NodePtr node);
+		const std::vector<std::unique_ptr<Node>> & Content() const { return _content; }
 
-		Node * Find(const std::string & path) const;
-		Node * Find(std::sregex_token_iterator iter) const;
+		NodePtr Find(const std::string & path)/* const*/;
+		NodePtr Find(std::sregex_token_iterator iter) /*const*/;
 
-		static Folder * Parse(rapidjson::Value & json);
+		typedef std::unique_ptr<Folder> FolderPtr;
+		static FolderPtr Parse(rapidjson::Value & json);
 
 	private:
-		std::vector<Node*> _content;
+		std::vector<std::unique_ptr<Node>> _content;
 	};
 }

@@ -6,6 +6,7 @@
 #endif
 
 using namespace tree;
+typedef std::unique_ptr<Link> LinkPtr;
 
 tree::Size Link::Size(bool bFollow, bool bRecursive) const
 {
@@ -26,10 +27,11 @@ void Link::List(bool bFollow, bool bRecursive, const std::string & offset, std::
 	}
 }
 
-Link * Link::Parse(rapidjson::Value & json)
+LinkPtr Link::Parse(rapidjson::Value & json)
 {
 	if (!json.HasMember("name") || !json.HasMember("link"))
 		return nullptr;
-
-	return new Link(json["name"].GetString(), json["link"].GetString());
+	LinkPtr link_ptr(new Link(json["name"].GetString(), json["link"].GetString()));
+	return link_ptr;
+	//return new Link(json["name"].GetString(), json["link"].GetString());
 }

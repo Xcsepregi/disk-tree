@@ -10,6 +10,8 @@
 #include <sstream>
 
 #include "data.h"
+typedef std::unique_ptr<tree::Link> LinkPtr;
+
 
 TEST(Link, Initialization)
 {
@@ -46,7 +48,7 @@ TEST(Link, Size)
 	std::unique_ptr<tree::Folder> folder { tree::ParseDisk(json) };
 	EXPECT_NE(folder.get(), nullptr);
 
-	auto link = dynamic_cast<tree::Link*>(folder->Find("/link-Z"));
+	auto link = dynamic_cast<tree::Link*>(folder->Find("/link-Z").get());
 	EXPECT_NE(link, nullptr);
 
 	EXPECT_DOUBLE_EQ((double)link->Size(false, false), 0);
@@ -57,7 +59,7 @@ TEST(Link, Size)
 
 	EXPECT_DOUBLE_EQ((double)link->Size(true, true), 8);
 
-	link = dynamic_cast<tree::Link*>(folder->Find("/link-Y"));
+	link = dynamic_cast<tree::Link*>(folder->Find("/link-Y").get());
 	EXPECT_NE(link, nullptr);
 
 	EXPECT_DOUBLE_EQ((double)link->Size(false, false), 0);
@@ -77,7 +79,7 @@ TEST(Link, List)
 	std::unique_ptr<tree::Folder> folder { tree::ParseDisk(json) };
 	EXPECT_NE(folder.get(), nullptr);
 
-	auto link = dynamic_cast<tree::Link*>(folder->Find("/link-Z"));
+	auto link = dynamic_cast<tree::Link*>(folder->Find("/link-Z").get());
 	EXPECT_NE(link, nullptr);
 
 	{
@@ -129,7 +131,7 @@ TEST(Link, List)
 		EXPECT_STREQ(str.str().c_str(), "link-Z -X-> /folder-A/file-A-S\n");
 	}
 
-	link = dynamic_cast<tree::Link*>(folder->Find("/link-Y"));
+	link = dynamic_cast<tree::Link*>(folder->Find("/link-Y").get());
 	EXPECT_NE(link, nullptr);
 
 	{
