@@ -17,9 +17,9 @@ tree::Size Folder::Size(bool bFollow, bool bRecursive) const
 		_content.begin(),
 		_content.end(),
 		.0,
-		[bFollow, bRecursive](tree::Size size, const Node * node)
+		[bFollow, bRecursive](tree::Size size,const auto & node)
 		{
-			auto * folder = dynamic_cast<const Folder*>(node);
+			auto * folder = dynamic_cast<const Folder*>(node.get());
 
 			if (folder)
 			{
@@ -53,10 +53,11 @@ void Folder::List(bool bFollow, bool bRecursive, const std::string & offset, std
 
 void Folder::Insert(NodePtr node)
 {
-	_content.push_back(node);
+	//_content.push_back(node);
+	_content.push_back(std::move(node));
 }
 
-NodePtr Folder::Find(const std::string & path) /*const*/
+NodePtr Folder::Find(const std::string & path)
 {
 	std::regex rgx { "/" };
 	auto start = path.begin();
@@ -66,7 +67,7 @@ NodePtr Folder::Find(const std::string & path) /*const*/
 	return Find({ start, path.end(), rgx, -1 });
 }
 
-NodePtr Folder::Find(std::sregex_token_iterator iter)/* const*/
+NodePtr Folder::Find(std::sregex_token_iterator iter)
 {
 	if (iter == std::sregex_token_iterator())
 		return nullptr;
@@ -92,6 +93,7 @@ void Folder::Remove(const NodePtr node)
 {
 	_content.erase(std::remove(_content.begin(), _content.end(), node), _content.end());
 }
+
 
 FolderPtr Folder::Parse(rapidjson::Value & json)
 {
