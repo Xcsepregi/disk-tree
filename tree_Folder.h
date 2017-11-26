@@ -19,7 +19,7 @@ namespace tree
 
 		void Insert(NodePtr node);
 		void Remove(const NodePtr node);
-		const std::vector<std::unique_ptr<Node>> & Content() const { return _content; }
+		const std::vector<std::unique_ptr<Node>> & Content() const { return std::move( _content); }
 
 		NodePtr Find(const std::string & path)/* const*/;
 		NodePtr Find(std::sregex_token_iterator iter) /*const*/;

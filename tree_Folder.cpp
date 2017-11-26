@@ -72,7 +72,7 @@ NodePtr Folder::Find(std::sregex_token_iterator iter)
 	if (iter == std::sregex_token_iterator())
 		return nullptr;
 
-	auto itNode = std::find_if(_content.begin(), _content.end(), [&iter](Node * node)
+	auto itNode = std::find_if(std::move(_content.begin()), std::move(_content.end()), [&iter](NodePtr&  node)
 	{
 		return node->Name() == *iter;
 	}
