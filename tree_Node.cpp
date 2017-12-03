@@ -14,7 +14,7 @@ typedef std::unique_ptr<File> FilePtr;
 typedef std::unique_ptr<Link> LinkPtr;
 typedef std::unique_ptr<Folder> FolderPtr;
 
-NodePtr Node::Parse(rapidjson::Value & json)
+std::unique_ptr<Node> Node::Parse(rapidjson::Value & json)
 {
 	if (json.HasMember("size"))
 	{

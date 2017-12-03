@@ -197,6 +197,7 @@
     <ClInclude Include="cmd_defs.h" />
     <ClInclude Include="cmd_Parse.h" />
     <ClInclude Include="headers.h" />
+    <ClInclude Include="Help.h" />
     <ClInclude Include="tree_Disk.h" />
     <ClInclude Include="tree_File.h" />
     <ClInclude Include="tree_Folder.h" />

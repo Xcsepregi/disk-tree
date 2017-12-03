@@ -10,7 +10,6 @@ using namespace tree;
 
 bool cmd::Quit(tree::Node *, std::ostream & out)
 {
-	//todo: nice good bye
-	out << "bye" << std::endl;
+	out << "Dakujeme za pouzitie, dovidenia!" << std::endl;
 	return false;
 }

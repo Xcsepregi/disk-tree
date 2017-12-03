@@ -12,7 +12,7 @@ using namespace tree;
 
 Handler cmd::List(const Options & options)
 {
-	return [bFollow = options.bFollow, bRecursive = options.bRecursive, path = options.path](Node * node, std::ostream & out)
+	return[bFollow = options.bFollow, bRecursive = options.bRecursive, path = options.path](Node * node, std::ostream & out)
 	{
 		auto root = ParsePath(path, node);
 

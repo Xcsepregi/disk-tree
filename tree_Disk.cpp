@@ -11,17 +11,17 @@
 
 typedef std::unique_ptr<tree::Node> NodePtr;
 
-tree::Folder * tree::ParseDisk(rapidjson::Value & json)
+std::unique_ptr<tree::Folder> tree::ParseDisk(rapidjson::Value & json)
 {
 	// parse disk hierarchy
-	Folder * root = dynamic_cast<Folder*>(Folder::Parse(json).get());
+	auto root = Folder::Parse(json);
 	if (!root)
 		return nullptr;
 
 	// resolve links
 	std::stack<Folder *> folders;
 
-	folders.push(root);
+	folders.push(root.get());
 
 	while (!folders.empty())
 	{
@@ -36,9 +36,9 @@ tree::Folder * tree::ParseDisk(rapidjson::Value & json)
 			}
 			else if (auto * link = dynamic_cast<Link *>(node.get()))
 			{
-				NodePtr node = root->Find(link->Path());
+				Node * node = root->Find(link->Path());
 				if (node)
-					link->Set(std::move(node));
+					link->Set(node);
 			}
 		}
 	}

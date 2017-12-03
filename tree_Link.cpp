@@ -33,5 +33,4 @@ LinkPtr Link::Parse(rapidjson::Value & json)
 		return nullptr;
 	LinkPtr link_ptr(new Link(json["name"].GetString(), json["link"].GetString()));
 	return link_ptr;
-	//return new Link(json["name"].GetString(), json["link"].GetString());
 }
