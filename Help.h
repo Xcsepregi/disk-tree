@@ -2,7 +2,6 @@
 #include <string>
 
 namespace help {
-	std::string args{ "Dostupne prikazy:\n-list\n-size\n-tree\n-dump\n-rm\n-mkdir\n-link\n-touch\n-help\n-quit\n\nPre podrobne informacie ohladom prikazu zadajte nazov prikazu.\nPre pokracovanie prace s Json Disk Tree Reader zadajte prikaz 'work'!\n" };
 	std::string list{ "Prikaz list[-follow][-recursive][path]\n------------------\nVypise zadefinovany adresar.\nAdresar je definovany cestou[path], defaultne je nastaveny hlavny adresar.\nArgument[-follow] umoznuje sledovanie linkov.\nArgument[-recursive] umoznuje rekurzivne vnaranie sa do adresarov.\n\n" };
 	std::string size{ "Prikaz size [-follow] [-recursive] [path]\n------------------\nVypise velkost subora/adresara.\nArgument [path] obsahajue cestu ku objektu, ktoreho velkost sa vypise.\nArgument [-follow] zahrnie odkazovane subory a adresare.\nArgument [-recursive] rekurzivne prida vnorene adresare.\n\n" };
 	std::string tree_struct{ "Prikaz tree [path]\n------------------\nZobrazi stromovu strukturu pre zadanu adresu.\nCesta [path] je cesta, pre ktoru sa struktura zobrazi.\nDefaultne zobrazi strukturu pre hlavny adresar!\n\n" };
@@ -11,6 +10,5 @@ namespace help {
 	std::string mkdir{ "Prikaz mkdir <path>\n------------------\nUmozni vytvorenie noveho adresara.\nArgument <path> obsahuje adresu, na ktorej sa novy adresar vytvori.\n\n"};
 	std::string link{ "Prikaz link <name> <path>\n------------------\nUmozni vytvorenie odkazu na adresar alebo subor.\nArgument <name> je nazov linku, je to povinny argument\nAdresa <path> je adresa, na ktoru bude link ukazovat.\n\n"};
 	std::string touch{ "Prikaz touch <path> size\n------------------\nUmozni vytvorenie noveho suboru na adrese <path>.\nUzivatel zadava velkost suboru v argumente size, defaultna velkost je 0 B.\n\n"};
-	std::string help_cmd{ "Prikaz help [command]\n------------------\nVypise napovedu pre Json Disk Tree Reader.\nBez zadaneho argumentu vypise vsetky dostupne prikazy!\n\n"};
 	std::string quit{ "Prikaz quit\n------------------\nUkonci program Json Disk Tree Reader!\n\n"};
 }
