@@ -17,7 +17,7 @@ Handler cmd::Help( const Options & options)
 	{
 		if (arg == "list") out << list;
 		else if (arg == "size") out << size;
-		else if (arg == "tree_struct") out << tree_struct;
+		else if (arg == "tree") out << tree_struct;
 		else if (arg == "dump") out << dump;
 		else if (arg == "rm") out << rm;
 		else if (arg == "mkdir") out << mkdir;
