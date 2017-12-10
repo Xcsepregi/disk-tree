@@ -9,10 +9,7 @@
 #endif
 
 using namespace tree;
-typedef std::unique_ptr<Node> NodePtr;
-typedef std::unique_ptr<File> FilePtr;
-typedef std::unique_ptr<Link> LinkPtr;
-typedef std::unique_ptr<Folder> FolderPtr;
+
 
 std::unique_ptr<Node> Node::Parse(rapidjson::Value & json)
 {

@@ -72,14 +72,8 @@ std::optional<std::pair<Command, Options>> cmd::ParseOptions(const std::string &
 	}
 	else if (match[1] == "tree") {
 		command = Command::Tree;
-		if (match[7].matched) {
-			if (match[7].str()[0] != '/') {
-				//return {};//z rootu
-			}
-
-			param = '/';
+		param = '/';
 		}
-	}
 	else {
 		return {};
 	}
@@ -94,7 +88,7 @@ std::variant<std::string, tree::Node *> cmd::ParsePath(const std::string & path,
 		auto * folder = dynamic_cast<Folder*>(root);
 		if (!folder)
 		{
-			//todo: nice error message
+			//todo: make nice error message
 			return "invalid root";
 		}
 		

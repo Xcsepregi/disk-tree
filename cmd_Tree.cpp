@@ -14,7 +14,8 @@ Handler cmd::Tree(const Options & options)
 {
 	return[bFollow = options.bFollow, bRecursive = options.bRecursive, path = options.path](Node * node, std::ostream & out)
 	{
-		out << "prikaz!" << std::endl;
+		node->List(bFollow, true, "", out);
+
 		return true;
 	};
 }
