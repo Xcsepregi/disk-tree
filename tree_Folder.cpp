@@ -34,6 +34,7 @@ tree::Size Folder::Size(bool bFollow, bool bRecursive) const
 void Folder::List(bool bFollow, bool bRecursive, const std::string & offset, std::ostream & out) const
 {
 	out << "[" << Name() << "]" << std::endl;
+
 	for (auto& node : _content)
 	{
 		auto folder = dynamic_cast<const Folder*>(node.get());

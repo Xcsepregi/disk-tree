@@ -72,8 +72,26 @@ std::optional<std::pair<Command, Options>> cmd::ParseOptions(const std::string &
 	}
 	else if (match[1] == "tree") {
 		command = Command::Tree;
-		param = '/';
+		if (match[7].matched)
+		{
+			if (match[7].str() == "") 
+			{
+				param = '/';
+			}
+			else if (match[7].str() != "")
+			{
+				if (match[7].str()[0] != '/')
+				{
+					return {};
+				}
+				else if (match[7].str()[0] == '/')
+				{
+					param = match[7].str();
+				}
+			}
+			
 		}
+	}
 	else {
 		return {};
 	}

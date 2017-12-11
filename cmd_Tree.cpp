@@ -12,10 +12,15 @@ using namespace tree;
 
 Handler cmd::Tree(const Options & options)
 {
-	return[bFollow = options.bFollow, bRecursive = options.bRecursive, path = options.path](Node * node, std::ostream & out)
+	return[bFollow = options.bFollow, path = options.path](Node * node, std::ostream & out)
 	{
-		node->List(bFollow, true, "", out);
-
+		if(path == "")node->List(bFollow , true, "", out);
+		else
+		{
+			auto root = ParsePath(path, node);
+			if (std::holds_alternative<Node*>(root))
+				std::get<Node*>(root)->List(bFollow, true, "", out);
+		}
 		return true;
 	};
 }
